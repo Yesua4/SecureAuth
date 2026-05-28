@@ -238,7 +238,8 @@ def logout():
 # Entry Point
 # ─────────────────────────────────────────────
 
+app.secret_key = os.urandom(24)
+init_db()
+
 if __name__ == "__main__":
-    init_db()
-    app.secret_key = os.urandom(24)  # Random secret key for sessions
     app.run(debug=True)
