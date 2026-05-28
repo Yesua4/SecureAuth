@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}Register — SecureAuth{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <div class="logo">🔐</div>
+        <h1>Create Account</h1>
+        <p class="subtitle">Secure Registration System</p>
+    </div>
+
+    <form method="POST" action="/register" autocomplete="off">
+
+        <!-- Username -->
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username"
+                   placeholder="Choose a username" required />
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+            <label for="password">Password</label>
+            <div class="input-wrap">
+                <input type="password" id="password" name="password"
+                       placeholder="Create a strong password"
+                       oninput="updateStrength(this.value)"
+                       required />
+                <span class="toggle-pw" onclick="toggleVisibility('password')">👁</span>
+            </div>
+
+            <!-- Password Strength Meter -->
+            <div class="meter-container">
+                <div class="meter-bar">
+                    <div id="meter-fill" class="meter-fill"></div>
+                </div>
+                <span id="meter-label" class="meter-label">—</span>
+            </div>
+
+            <!-- Requirement Checklist -->
+            <ul class="requirements" id="req-list">
+                <li id="req-length">   <span class="icon">✗</span> At least 12 characters</li>
+                <li id="req-upper">    <span class="icon">✗</span> Uppercase letter (A–Z)</li>
+                <li id="req-lower">    <span class="icon">✗</span> Lowercase letter (a–z)</li>
+                <li id="req-digit">    <span class="icon">✗</span> Number (0–9)</li>
+                <li id="req-symbol">   <span class="icon">✗</span> Special character (!@#$…)</li>
+            </ul>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="form-group">
+            <label for="confirm_password">Confirm Password</label>
+            <div class="input-wrap">
+                <input type="password" id="confirm_password" name="confirm_password"
+                       placeholder="Re-enter your password"
+                       oninput="checkMatch()"
+                       required />
+                <span class="toggle-pw" onclick="toggleVisibility('confirm_password')">👁</span>
+            </div>
+            <span id="match-msg" class="match-msg"></span>
+        </div>
+
+        <button type="submit" class="btn-primary">Register</button>
+    </form>
+
+    <p class="switch-link">Already have an account? <a href="/login">Log In</a></p>
+</div>
+{% endblock %}

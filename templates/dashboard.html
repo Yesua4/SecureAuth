@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — SecureAuth{% endblock %}
+
+{% block content %}
+<div class="card dashboard-card">
+    <div class="card-header">
+        <div class="logo">✅</div>
+        <h1>Login Successful</h1>
+        <p class="subtitle">Welcome, <strong>{{ username }}</strong>!</p>
+    </div>
+
+    <div class="success-box">
+        <p>🔒 You are now authenticated securely.</p>
+        <p>Your password was verified using <strong>SHA-256</strong> with <strong>salt</strong> and <strong>pepper</strong>.</p>
+    </div>
+
+    <a href="/logout" class="btn-primary" style="display:block; text-align:center; text-decoration:none; margin-top:1.5rem;">
+        Log Out
+    </a>
+</div>
+{% endblock %}
